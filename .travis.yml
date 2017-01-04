@@ -13,3 +13,19 @@ jdk:
 - oraclejdk7
 - openjdk7
 - openjdk6
+notifications:
+  slack:
+    secure: nauJW67B6iH2cKn+QmEgko99P0nJkG8rB3jvkqDAA/tYJztraY6ALAv01I4G3auD29P/EKaKGmVuzIqDF/e6jFdN+YAdqWvaWP7OJyPDztyL2NpM4ECCBE/AHXCWk5kDKH91nO71n36losKZaY+ryGWnVgG4Q/X18xGMzNBItL/ZtfmeK2pY9ut8+z/f5EF2UmgAyt/Fkyq/lOvx/KEBCX6ZMTBi9f+GaJogKGTVPf0eyZ4R1ADgj1Nl267jEuW5V4zXLvdc25G+puG262sSx6MIZbwQOnzFLm7mNmfNV8z/TilXxA/P8gIfvPKkwohMRvkvAADQKGFdcA18OOQbuHcOKEnnBQvCrJZwWa+rStUk5d9IypajdJKL4mqVD965EGvoLfGigB9hnbJbFIIG6JdA/Vd0EPJ5LHlHOxiUuTFnOw1C0IamAPkTtoVWk/2cEODqZMxvGGe+FjonjAq3yjZmQgAwz5GL9puW0+BDxBVsJYf89ZcCBxt9FoMyntlm4fiFD6BW/ia52Ca8UAML3MtaJBXG3CU2erNRWZ1vamUqScDM5VmgWFgJbfMCMB468MBbUizf46Bkzy5tJEEz+QGTL6o3J3/Ac6E5GCHndp5kdzTuTlKAIIMjciOvBamn8QpHfI8e+BiMUCGb6ybOD+eteK9icqZdaBlie1ddFRY=
+    on_success: change
+    on_failure: change
+  email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: Z+LQMeyOPT+L4foLFj7gcuVkctuQqQbwZS1ss4aDaKFHqsLDs1j3I/W1Cl8Gldc0uTnhfIiTpzPvZ/w0Z19Qq32W1vKdxqUu9uEe5yTSxisqkYrBvyoMgn7EcedJVPhKZsZVAKOc/dj2xJMiilN1J4WNXTEaTkojGC5ZDyFbYqXPbnP3VEIZaldiWOkz5iW5nBHLmupJqyR2KKGZ0/OXLPYrBC31mFu/t18ZaWnxXMSffHlW9l8UrBZcYSRUh6ZzVxpmgpw7wm3WduuMDyFy8mVEaPI15cpUxF2amA0f6A3Y9mzEhMn3DoHLMLvHHFXENxkro1RhPHG/bMJREAE+PJasNGQXUXJQ12bBDq4pW2eThfmF9vkpuNJSjGU8yPcX2omb1RxzJIWUKIfGy/u/9lhaH/m+Mstwvo8pgCLuPKsscKIT63t+wh1vZuDK6cf0KPE0ocZy5HnUcz6Vh/032EA05v8yP8wTYAi+mxPlI1s5PltuSlS+i9e5oKZFsgfqg2ShSjAYgDHFQ7gqxxBDdgrfGFcn+qfhjm115WQajMixGHfhb9E5RWnjg0mD0BoarmI/GS9y/lS5mysgq2x17rtWfHvzXQnx/vj+sKXLfZX0zB/+RNURsw8TX14bGrZoin1wuT9nxX24sVKIJHABPYFj1Ci6yuDhMG4YGuKkh3M=
+  file_glob: true
+  file: releases/*.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: IBM-UrbanCode/Rational-ClearQuest-UCD

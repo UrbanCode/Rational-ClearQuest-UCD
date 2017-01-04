@@ -11,7 +11,7 @@
   <!--   STEPS                  -->
   <!-- ======================== -->
   <step-type name="Add Related Change Request">
-    <description>Add a Related Change Request link to a record.</description>
+    <description>Add a Related Change Request link to a record. (Note: This will remove all other links.)</description>
     <properties>
       <property name="hostname" required="true">
         <property-ui type="textBox" label="Hostname" description="The IBM Rational ClearQuest's Hostname. Example: quagmire.rtp.raleigh.ibm.com" default-value="${p:resource/clearquest.hostname}"/>
