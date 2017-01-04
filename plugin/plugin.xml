@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <header>
+    <identifier version="1" id="com.urbancode.air.plugin.rational.clearquest" name="IBM Rational ClearQuest"/>
+    <description>
+    The IBM Rational ClearQuest plug-in contains a single step to add Related Change Requests to records.
+    </description>
+    <tag>Rational/ClearQuest</tag>
+  </header>
+  <!-- ======================== -->
+  <!--   STEPS                  -->
+  <!-- ======================== -->
+  <step-type name="Add Related Change Request">
+    <description>Add a Related Change Request link to a record.</description>
+    <properties>
+      <property name="hostname" required="true">
+        <property-ui type="textBox" label="Hostname" description="The IBM Rational ClearQuest's Hostname. Example: quagmire.rtp.raleigh.ibm.com" default-value="${p:resource/clearquest.hostname}"/>
+      </property>
+      <property name="repo" required="true">
+        <property-ui type="textBox" label="Repository" description="The IBM Rational ClearQuest's repository containing the record. Example: DOC" default-value="${p?:resource/clearquest.repository}"/>
+      </property>
+      <property name="db" required="true">
+        <property-ui type="textBox" label="Database" description="The IBM Rational ClearQuest's database containing the record. Example: SAMPL" default-value="${p?:resource/clearquest.database}"/>
+      </property>
+      <property name="dbid" required="true">
+        <property-ui type="textBox" label="Database ID" description="The 8 digit Rational ClearQuest database identifier that uniquely identifies an object." default-value="${p?:resource/clearquest.dbid}"/>
+      </property>
+      <property name="recordId" required="true">
+        <property-ui type="textBox" label="Record ID" description="The 8 digit Rational ClearQuest database identifier that uniquely identifies the record object." default-value="${p?:component/clearquest.recordId}"/>
+      </property>
+      <property name="relatedChangeRequestTitle">
+        <property-ui type="textBox" label="Related Change Request Title" description="The title of the Related Change Request." default-value=""/>
+      </property>
+      <property name="relatedChangeRequestLink" required="true">
+        <property-ui type="textBox" label="Related Change Request Link" description="The link of the Related Change Request." default-value=""/>
+      </property>
+      <property name="username" required="true">
+        <property-ui type="textBox" label="Username" description="The username to use to authenticate with Rational Clearquest." default-value="${p?:resource/clearquest.username}"/>
+      </property>
+      <property name="password" required="true">
+        <property-ui type="secureBox" label="Password" description="The password to use to authenticate with Rational Clearquest." default-value="${p?:resource/clearquest.password}"/>
+      </property>
+      <property name="acceptAllCertificates">
+        <property-ui type="checkBox" label="Accept All Certificates" description="Select to accept all self signed certifcates." default-value="false"/>
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+     ]]></post-processing>
+    <command program="${GROOVY_HOME}/bin/groovy">
+      <arg value="-cp"/>
+      <arg path="classes:lib/groovy-plugin-utils-1.2.jar:lib/httpclient-4.3.4.jar:lib/httpcore-4.3.2.jar:lib/commons-codec-1.6.jar"/>
+      <arg file="addRelatedChangeRequest.groovy"/>
+      <arg file="${PLUGIN_INPUT_PROPS}"/>
+      <arg file="${PLUGIN_OUTPUT_PROPS}"/>
+    </command>
+  </step-type>
+</plugin>
