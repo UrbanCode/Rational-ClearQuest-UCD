@@ -19,7 +19,7 @@ final String db       = props['db'].trim()
 final String dbid     = props['dbid'].trim()
 final String recordId = props['recordId'].trim()
 final String relatedChangeRequestTitle = props['relatedChangeRequestTitle'].trim()
-final String relatedChangeRequestLink  = props['relatedChangeRequestLink'].trim().replaceAll("&", "&amp;")
+final String relatedChangeRequestLink  = props['relatedChangeRequestLink'].trim()
 final boolean acceptAllCertificates    = props['acceptAllCertificates'].toBoolean()
 
 ClearQuestHelper cqh = new ClearQuestHelper(hostname, repo, db, dbid, recordId,

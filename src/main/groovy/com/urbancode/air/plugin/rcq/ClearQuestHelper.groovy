@@ -100,7 +100,7 @@ public class ClearQuestHelper {
                  xmlns:oslc_cm="http://open-services.net/ns/cm#">
 
                 <oslc_cm:ChangeRequest rdf:about="${getURL()}">
-                <oslc_cm:relatedChangeRequest rdf:ID="link1" rdf:resource="${link}" />
+                <oslc_cm:relatedChangeRequest rdf:ID="link1" rdf:resource="${link.replaceAll("&", "&amp;")}" />
                 </oslc_cm:ChangeRequest>
 
                 <rdf:Description rdf:about="#link1">
@@ -127,7 +127,7 @@ public class ClearQuestHelper {
         }
         try {
             int code = response.getStatusLine().getStatusCode()
-            if (code < 200 || code <= 300) {
+            if (code < 200 || code >= 300) {
                 throw new Exception("[Error] HTTP Call failed.")
             }
         } catch (Exception ex) {
