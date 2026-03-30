@@ -6,21 +6,21 @@
  */
 
 import com.urbancode.air.plugin.rcq.ClearQuestHelper
-import com.urbancode.air.AirPluginTool
+import com.urbancode.plugin.helper.NewAirPluginTool
 
-def apTool = new AirPluginTool(this.args[0], this.args[1]);
+def apTool = new NewAirPluginTool(this.args[0], this.args[1]);
 def props = apTool.getStepProperties();
 
-final String username = props['username'].trim()
-final String password = props['password']
-final String hostname = props['hostname'].trim()
-final String repo     = props['repo'].trim()
-final String db       = props['db'].trim()
-final String dbid     = props['dbid'].trim()
-final String recordId = props['recordId'].trim()
-final String relatedChangeRequestTitle = props['relatedChangeRequestTitle'].trim()
-final String relatedChangeRequestLink  = props['relatedChangeRequestLink'].trim()
-final boolean acceptAllCertificates    = props['acceptAllCertificates'].toBoolean()
+String username = props['username'].trim()
+String password = props['password']
+String hostname = props['hostname'].trim()
+String repo     = props['repo'].trim()
+String db       = props['db'].trim()
+String dbid     = props['dbid'].trim()
+String recordId = props['recordId'].trim()
+String relatedChangeRequestTitle = props['relatedChangeRequestTitle'].trim()
+String relatedChangeRequestLink  = props['relatedChangeRequestLink'].trim()
+boolean acceptAllCertificates    = props['acceptAllCertificates'].toBoolean()
 
 ClearQuestHelper cqh = new ClearQuestHelper(hostname, repo, db, dbid, recordId,
      username, password, acceptAllCertificates)
